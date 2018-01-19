@@ -2,7 +2,9 @@
 title: "Project 1 - Reproducible Research"
 author: "Tom Goter"
 date: "January 19, 2018"
-output: html_document
+output: 
+  html_document:
+    keep_md: true
 ---
 
 ```{r setup, include=FALSE}
