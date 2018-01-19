@@ -18,7 +18,7 @@ This document goes through some simple data analysis and makes use of RMarkdown 
 ### Step 1 - Read Data
 This short chunk of code reads in the activity date and converts the date column into a date format.
 
-```{r read and process data}
+```{r read_and_process_data}
 activityData <- read.csv("activity.csv")
 activityData$date <- as.Date(activityData$date)
 ```
@@ -26,7 +26,7 @@ activityData$date <- as.Date(activityData$date)
 ### Step 2 - Calculate Mean Number of Steps per Day
 This chunk of code finds the mean number of steps taken per day.
 
-```{r mean steps}
+```{r mean_steps}
 steps_per_day <- tapply(activityData$steps, activityData$date, sum)
 hist(steps_per_day)
 avgSteps <- mean(steps_per_day, na.rm = TRUE)
@@ -38,7 +38,7 @@ The mean steps per day is `r avgSteps`, and the median steps per day is `r media
 ### Step 3 - Average Daily Activity Pattern
 This chunk of code averages the step data across the days for each five second time interval.
 
-```{r mean steps by interval}
+```{r mean_steps_by_interval}
 steps_per_interval <- tapply(activityData$steps, activityData$interval, mean, na.rm=TRUE)
 plot(activityData$interval[1:length(steps_per_interval)],steps_per_interval,type="l",
      xlab = "5 Second Interval", main = "Time Series Plot of Average Steps")
@@ -50,7 +50,7 @@ On average the 5-second interval with the most amount of steps is interval numbe
 ### Step 4 - Imputing Missing Values
 This chunk of code tries to fill in missing data with the daily average.
 
-```{r imputing missing data}
+```{r imputing_missing_data}
 missingDataCount <- sum(is.na(activityData$steps))
 newActivityData <- activityData
 for (i in 1:length(activityData$steps)) {
@@ -76,7 +76,7 @@ day for days without missing data.
 ### Step 5 - Weekday vs Weekend Pattern
 This section of code is used to identify any patterns between weekday and weekend step counts.
 
-```{r weekday trend}
+```{r weekday_trend}
 library(lattice)
 library(reshape2)
 wd_array <- c('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday')
